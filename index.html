@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: rgb(255, 228, 181);
+            text-align: center;
+            padding-top: 40px;
+        }
+        .choice {
+            font-size: 50px;
+            padding: 10px 20px;
+            margin: 8px;
+            cursor: pointer;
+            border-radius: 12px;
+            border: 3px solid rgb(255, 172, 39);
+        }
+        #score {
+            font-size: 26px;
+            font-weight: bold;
+        }
+        #result {
+            font-size: 22px;
+            min-height: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Камень, ножницы, бумага</h1>
+    <p id="score">Ты 0 : 0 Компьютер</p>
+    <button class="choice" onclick="play('камень')">✊</button>
+    <button class="choice" onclick="play('ножницы')">✌️</button>
+    <button class="choice" onclick="play('бумага')">✋</button>
+    <p id="moves"></p>
+    <p id="result"></p>
+
+    <script>
+        let options = ['камень', 'ножницы', 'бумага']
+        let playrScore = 0
+        let ComputerScore = 0
+        function play(player) {
+            let computer = options[Math.floor(Math.random() * options. length)]
+        
+            document.getElementById('moves').textContent = 'Ты: ' + player + ' - Компьютер: ' + computer 
+        
+            let result;
+
+            if (player === computer) {
+                result = 'Ничья'
+            } else if (
+                (player === 'камень' && computer === 'ножницы') ||
+                (player === 'ножницы' && computer === 'бумага') ||
+                (player === 'бумага' && computer === 'камень')
+            ) {
+                result = 'Ты победил!'
+                playrScore++
+            } else {
+                result = 'Компьютер победил!'
+                ComputerScore++
+            }
+            document.getElementById('result').textContent = result
+            document.getElementById('score').textContent = 'Ты ' + playrScore + ' : ' +
+            ComputerScore + ' Компьютер'
+        }
+    </script>
+</body>
+</html>
